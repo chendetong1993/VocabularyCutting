@@ -1,0 +1,23 @@
+﻿<Window x:Class="WPF.WindowInputInformation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Input" Height="100" Width="300">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="5" MinHeight="5"/>
+            <RowDefinition />
+            <RowDefinition MaxHeight="5" MinHeight="5"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MaxWidth="5" MinWidth="5"/>
+            <ColumnDefinition />
+            <ColumnDefinition MaxWidth="5" MinWidth="5"/>
+            <ColumnDefinition MaxWidth="60" MinWidth="60"/>
+            <ColumnDefinition MaxWidth="5" MinWidth="5"/>
+        </Grid.ColumnDefinitions>
+        <TextBox BorderBrush="Gray" BorderThickness="1" Name="TextBoxInput" Grid.Column="1"  Grid.Row="1" TextWrapping="Wrap" FontSize="12" />
+        <Button BorderBrush="Gray" BorderThickness="1" Content="OK" Grid.Column="3" Grid.Row="1" Click="Button_ClickOK" />
+    </Grid>
+    </DockPanel>
+</Window>

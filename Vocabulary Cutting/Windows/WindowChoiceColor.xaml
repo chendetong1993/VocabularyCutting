@@ -1,0 +1,17 @@
+﻿<Window x:Class="WPF.WindowChoiceColor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Choice a color" Height="415" Width="243" >
+    <Grid>
+        <ListBox x:Name="ListBoColorList"  ToolTip="Double click select color" MouseDoubleClick="ListBoColorList_MouseDoubleClick">
+            <ListBox.ItemTemplate>
+                <HierarchicalDataTemplate  ItemsSource="{Binding Path=Item}">
+                    <DockPanel>
+                    <Label DockPanel.Dock="Left" Height="30" Width="60" Background="{Binding Color}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Label>
+                    <Label DockPanel.Dock="Left" Content="{Binding ColorName}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></Label>
+                    </DockPanel>
+                </HierarchicalDataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>

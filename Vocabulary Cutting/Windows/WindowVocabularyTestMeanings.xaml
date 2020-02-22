@@ -1,0 +1,53 @@
+﻿<Window x:Class="WPF.WindowVocabularyTestMeanings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Vocabulary Test"  Height="550" Width="600" Background="WhiteSmoke" Loaded="Window_Loaded" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MaxWidth="5" MinWidth="5"/>
+            <ColumnDefinition />
+            <ColumnDefinition MaxWidth="5" MinWidth="5"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition MaxHeight="5" MinHeight="5" />
+            <RowDefinition MaxHeight="60" MinHeight="60" />
+            <RowDefinition MaxHeight="5" MinHeight="5"/>
+
+            <RowDefinition  />
+            <RowDefinition MaxHeight="5" MinHeight="5" />
+            <RowDefinition MaxHeight="26" MinHeight="26" />
+            <RowDefinition MaxHeight="5" MinHeight="5" />
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Column="1" Grid.Row="1" Header="Word Test">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MaxWidth="40" MinWidth="40"/>
+                    <ColumnDefinition MaxWidth="5" MinWidth="5"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition MaxWidth="5" MinWidth="5"/>
+                    <ColumnDefinition MaxWidth="25" MinWidth="25"/>
+                    <ColumnDefinition MaxWidth="5" MinWidth="5"/>
+                    <ColumnDefinition MaxWidth="50" MinWidth="50"/>
+                </Grid.ColumnDefinitions>
+                <Button ToolTip="Pronouncation" Content="⊙"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="Button_ClickPronounceMainWord" />
+                <TextBox FontSize="20" ToolTip="Double Mouse Click to show the spelling" Name="TextBoxMainWordSpelling" Grid.Column="2" />
+                <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" ToolTip="Click to show the spelling" Name="CheckBoxMainWordSpelling" Grid.Column="4" Checked="CheckBoxMainWordSpelling_Checked" />
+                <Button Content="Check" Grid.Column="7" Click="Button_ClickCheck"  />
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Meaning Test" Grid.Column="1" Grid.Row="3" >
+            <ListBox Name="ListBoxMeanings" ToolTip="Double Click reprents Check" KeyDown="ListBoxMeanings_KeyDown">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Height="165" >
+                            <UserControl ToolTip="Right Mouse Click to switch" Height="150" Width="150" Background = "{Binding Image}" Margin="2,2,10,2" BorderBrush="Blue" BorderThickness="2" MouseUp="Picture_MouseDown" MouseDoubleClick="PictureLabel_MouseDoubleClick" />
+                            <Label ToolTip="{Binding Meanings}" Margin="2"  Content = "{Binding Meanings}" VerticalAlignment="Top" MouseUp="Meanings_MouseDown" MouseDoubleClick="PictureLabel_MouseDoubleClick" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+        <Button Content="Forgotten" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Center" Width="97" Click="Button_ClickReview" />
+        <Button Content="Skip" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="5" VerticalAlignment="Center" Width="97" Click="Button_ClickSkip"  />
+    </Grid>
+</Window>

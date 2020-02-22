@@ -1,0 +1,32 @@
+﻿<Window x:Class="WPF.WindowAbout"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="About"  Height="500" Width="480" Closed="Window_Closed" >
+    <Grid>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="12" MinWidth="12" Width="6*" />
+                <ColumnDefinition Width="223*" />
+                <ColumnDefinition MaxWidth="12" Width="12" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="4" MinHeight="4" />
+                <RowDefinition />
+                <RowDefinition MaxHeight="30" MinHeight="30" />
+                <RowDefinition MaxHeight="8" MinHeight="8" />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Column="1" Grid.Row="1" >
+                <DockPanel  DockPanel.Dock="Top">
+                    <Image Height="100" Width="100" Source="/Vocabulary Cutting;component/Sources/Icon/AboutIcon.png" DockPanel.Dock="Right" >
+                    </Image>
+                    <TextBlock Name="TextBlockIntroduction"  FontSize="13" FontWeight="Bold" FontStyle="Italic" />
+                </DockPanel>
+                <GroupBox Margin="0,5,0,0" Header="I want to say:" >
+                    <TextBox Padding="2" BorderThickness="0" IsReadOnly="true" Name="TextBoxStory" TextWrapping="WrapWithOverflow" FontSize="12" Foreground="Black" ></TextBox>
+                </GroupBox>
+            </DockPanel>
+            <Label Content="Wasting time is robbing oneself." Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+            <Button Name="ButtonSure" Content="OK" Grid.Column="1" Grid.Row="2" Height="23" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Width="75" Click="ButtonSure_Click" />
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,84 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WPF" x:Class="WPF.WindowVocabularyReview"
+        Title="Review Word" Height="650" Width="700" Background="WhiteSmoke" Loaded="Window_Loaded" >
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition MaxWidth="8" MinWidth="8"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <GridSplitter Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+        <Grid x:Name="MainGrid" Grid.Column="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="5" MinWidth="5"/>
+                <ColumnDefinition />
+                <ColumnDefinition MaxWidth="5" MinWidth="5"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition MaxHeight="5" MinHeight="5"/>
+                <RowDefinition MaxHeight="55" MinHeight="55"/>
+                <RowDefinition MaxHeight="5" MinHeight="5"/>
+                <RowDefinition MaxHeight="25" MinHeight="25"/>
+                <RowDefinition MaxHeight="5" MinHeight="5"/>
+                <RowDefinition MaxHeight="210" MinHeight="210"/>
+                <RowDefinition MaxHeight="5" MinHeight="5"/>
+                <RowDefinition />
+                <RowDefinition MaxHeight="5" MinHeight="5"/>
+                <RowDefinition MaxHeight="28" MinHeight="28"/>
+                <RowDefinition MaxHeight="5" MinHeight="5"/>
+            </Grid.RowDefinitions>
+            <local:UserControlWordCardSpelling x:Name="WordSpelling" Grid.Column="1"  Grid.Row="1" />
+            <Grid Grid.Column="1" Grid.Row="3" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="24"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="TextBoxSpelling"  FontSize="14" Grid.Column="1"/>
+                <Button Content="->"  Grid.Column="3" Click="Button_ClickCheck" ToolTip="Check"/>
+            </Grid>
+            <GroupBox Header="Pictures" Grid.Column="1" Grid.Row="5">
+                <ScrollViewer Name = "ScrollViewerPcitures"  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
+                    <StackPanel MouseDown="StackPanelPcitures_MouseDown" Background="WhiteSmoke" Name="StackPanelPcitures" DragEnter="StackPanelPcitures_DragEnter" AllowDrop="True" Orientation="Horizontal" Drop="StackPanelPcitures_Drop" >
+                        <StackPanel.ToolTip>
+                            <TextBlock>  
+                            Collect Pictures
+                            <LineBreak/>
+                             [Allow drop]
+                            <LineBreak/>
+                            [Left Mouse Double Click Delete]
+                            <LineBreak/>
+                            [Right Mouse Double Click Clear]
+                            </TextBlock>
+                        </StackPanel.ToolTip>
+                    </StackPanel>
+                </ScrollViewer>
+            </GroupBox>
+            <GroupBox Header="Examples" Grid.Column="1" Grid.Row="7">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible">
+                    <ListBox  Background="WhiteSmoke" Name="ListBoxExamples" DragEnter="ListBoxExamples_DragEnter" AllowDrop="True" Drop="ListBoxExamples_Drop" MouseDoubleClick="ListBoxExamples_MouseDoubleClick" SelectionChanged="ListBoxExamples_MouseDown">
+                        <ListBox.ToolTip>
+                            <TextBlock>  
+                            Collect Examples
+                            <LineBreak/>
+                             [Allow drop]
+                            <LineBreak/>
+                            [Left Mouse Double Click Delete]
+                            <LineBreak/>
+                            [Right Mouse Double Click Clear]
+                            </TextBlock>
+                        </ListBox.ToolTip>
+                    </ListBox>
+                </ScrollViewer>
+            </GroupBox>
+            <Button Content="Backward" Grid.Column="1" Width="100" HorizontalAlignment="Left" Grid.Row="9" VerticalAlignment="Center" Click="Button_ClickSkipFront" />
+            <Button Content="Forward" Grid.Column="1" Width="100" HorizontalAlignment="Right" Grid.Row="9" VerticalAlignment="Center" Click="Button_ClickSkipBack" />
+        </Grid>
+        <GroupBox Header="Addition" Grid.Column="2" >
+            <TextBox IsReadOnly="True" x:Name="TextBoxWord" TextWrapping="WrapWithOverflow" Background="WhiteSmoke" />
+        </GroupBox>
+    </Grid>
+</Window>

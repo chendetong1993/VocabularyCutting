@@ -1,0 +1,207 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WPF" x:Class="WPF.MainWindow"
+        Title="Vocabulary Cutting" Height="700" Width="1200" WindowState="Minimized" Background="WhiteSmoke" Closing="MainWindow_Closing" StateChanged="MainWindow_StateChanged" WindowStartupLocation="CenterScreen"  KeyUp="Window_KeyUp" KeyDown="Window_KeyDown">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="21" MaxHeight="21" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Menu >
+            <MenuItem Header="File">
+                <MenuItem Header="New Window" Click="NewWindow"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Create List" Click="NewList"></MenuItem>
+                <MenuItem Name="MenuItemDiscardList" Header="Discard List" Click="DiscardList"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Name="MenuItemOpenList" Header="Open List" Click="SelectListToOpen"></MenuItem>
+                <MenuItem Name="MenuItemChangeName" Header="Change Name" Click="ChangeNameList"></MenuItem>
+                <MenuItem Name="MenuItemChangePassword" Header="Change Password" Click="ChangePassword"></MenuItem>
+                <MenuItem Name="MenuItemCloseList" Header="Close List" Click="CloseList"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Name="MenuItemSaveList" Header="Save List" Click="SaveList"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Import List" Click="ImportList"></MenuItem>
+                <MenuItem Header="Export List" Click="ExportList"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Name="MenuItemManageBackup" Header="Restore List" Click="RestoreList">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Tools">
+                <MenuItem Header="Options" Click="Setting">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Help" >
+                <MenuItem Header="Contact" Click="Contact"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="About" Click="About"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Grid Name="GridMain" Grid.Row="1" Panel.ZIndex="4" Background="#FFE4E2E2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="20" Width="350" />
+                <ColumnDefinition MinWidth="6" MaxWidth="6" />
+                <ColumnDefinition MinWidth="20" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+            </Grid.RowDefinitions>
+            <GridSplitter Grid.Row="0" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+            <local:UserControlSplit x:Name="UserControlSplitToolsList" Grid.Column="0" Header="Tools" />
+            <local:UserControlSplit x:Name="UserControlSplitWordList" Grid.Column="2" Header="Vocabulary List" />
+            <ScrollViewer x:Name="ScrollViewerToolsList" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="StackPanelToolsList">
+                    <Expander BorderThickness="1" BorderBrush="Black" Header="Vocabulary Sorting" Margin="4,4,4,8" Background="#FFDFE1E4">
+                        <StackPanel Background="WhiteSmoke">
+                            <Label Margin="2" Content="Sorting Modes :"></Label>
+                            <ComboBox Name="ComboBoxOrderTypes" Margin="4" Background="WhiteSmoke" SelectionChanged="RadioButton_SortWords"></ComboBox>
+                        </StackPanel>
+                    </Expander>
+                    <Expander BorderThickness="1" BorderBrush="Black" Header="Vocabulary Filter" Margin="4,4,4,8" Background="#FFDFE1E4">
+                        <StackPanel Grid.Column="1" Background="WhiteSmoke" >
+                            <Label Content="FIlter Status : " ></Label>
+                            <CheckBox Name="CheckBoxCollapseRotatedWordPanel" Margin="4" Content="Collapse Rotated Word" IsChecked="False" VerticalAlignment="Center" />
+                            <Label Content="FIlter Types : " ></Label>
+                            <RadioButton Content="Do Not Apply" Margin="4" Click="Button_FreeFilter" IsChecked="True" />
+                            <RadioButton Content="Keep (When Condition Satifies)" Margin="4"  Click="Button_Filter" />
+                            <RadioButton Content="Filter (When Condition Satifies)" Margin="4" Click="Button_ReverseFilter" />
+                            <RadioButton Content="Keep All" Margin="4"  Click="Button_FilterAll" />
+                            <RadioButton Content="Filter All" Margin="4" Click="Button_ReverseFilterAll" />
+                            <Label Content="Filter Condition : " ></Label>
+                            <ListBox Margin="2" Background="WhiteSmoke" MinHeight="200" Name="ListBoxFliterConditions" Grid.Column="1" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                                <ListBox.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Add Condition" Click="AddCondition">
+                                        </MenuItem>
+                                        <MenuItem Header="Delete Condition" Click="DeleteCondition">
+                                        </MenuItem>
+                                        <MenuItem Header="Clear Conditions" Click="ClearConditions">
+                                        </MenuItem>
+                                        <Separator></Separator>
+                                        <MenuItem Header="Undo" Click="UndoConditions">
+                                        </MenuItem>
+                                        <Separator></Separator>
+                                        <MenuItem Header="Import Conditions" Click="ImportConditions">
+                                        </MenuItem>
+                                        <MenuItem Header="Export Conditions" Click="ExportConditions">
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </ListBox.ContextMenu>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <ComboBox Background="WhiteSmoke" Margin="-2,2,2,2" Width="140" ItemsSource = "{Binding List}" SelectedItem="{Binding SeletedItem}" SelectionChanged="FliterConditonIndexChanged" />
+                                            <TextBox Background="WhiteSmoke" Margin="2" Width="100" Text = "{Binding Value}" TextChanged="TextBox_FliterConditonTextChanged" />
+                                            <ComboBox Background="WhiteSmoke" ItemsSource = "{Binding ListFlip}" SelectedItem = "{Binding ListFlipIndex}" Margin="8,2,8,2" SelectionChanged="CheckBox_FliterConditonFlipChanged" HorizontalAlignment="Center" VerticalAlignment="Center"></ComboBox>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </StackPanel>
+                    </Expander>
+                    <Expander BorderThickness="1" BorderBrush="Black" Header="Vocabulary Search" Margin="4,4,4,8" Background="#FFDFE1E4">
+                        <StackPanel Grid.Column="1" Background="WhiteSmoke" >
+                            <Label Content="Input vocabulary : " Margin="2" ></Label>
+                            <TextBox Name="TextboxWordSearch" Background="WhiteSmoke" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Height="400" Margin="4" Text=">>" KeyDown="TextBoxFreeInput_KeyDown"></TextBox>
+                        </StackPanel>
+                    </Expander>
+                    <Expander BorderThickness="1" BorderBrush="Black" Header="Selected Vocabulary" Margin="4,4,4,8" Background="#FFDFE1E4">
+                        <StackPanel Grid.Column="1" Background="WhiteSmoke" >
+                            <Label Content="Selected vocabulary : " Margin="2" ></Label>
+                            <TextBox Name="TextboxWordSelected" Background="WhiteSmoke" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Height="400" Margin="4" ></TextBox>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer x:Name="ScrollViewerWordsList" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" PreviewKeyDown="ScrollViewerWordsList_PreviewKeyDown" >
+                <WrapPanel x:Name="StackPanelWordsList" Background="Transparent" Orientation="Vertical"  MouseDown="ScrollViewerWordsList_MouseDown" MouseWheel="ScrollViewerWordsList_MouseWheel">
+                </WrapPanel>
+                <ScrollViewer.ContextMenu>
+                    <ContextMenu KeyUp="Window_KeyUp" KeyDown="Window_KeyDown">
+                        <MenuItem Header="Known (K) " Click="ViewedMark">
+                        </MenuItem>
+                        <MenuItem Header="Reremember (R)" Click="RerememberWord">
+                        </MenuItem>
+                        <MenuItem Header="Try  Remember [!1]" Click="ReviewWords">
+                        </MenuItem>
+                        <MenuItem Header="Try  Test(Meanings)" Click="TestWordsMeanings">
+                        </MenuItem>
+                        <MenuItem Header="Try  Test(Examples)" Click="TestWordsExampless">
+                        </MenuItem>
+                        <MenuItem Header="Strong Review">
+                            <MenuItem Header="Strong Review" Click="StrongReview">
+                            </MenuItem>
+                            <MenuItem Header="Cancel Strong Review" Click="CancelStrongReview">
+                            </MenuItem>
+                        </MenuItem>
+                        <Separator></Separator>
+                        <MenuItem Header="Words Count (C)" Click="WordsCount">
+                        </MenuItem>
+                        <Separator></Separator>
+                        <MenuItem Header="Copy Word" Click="CopyWord">
+                        </MenuItem>
+                        <Separator></Separator>
+                        <MenuItem Header="Set Tag [!2]" Click="SetWordTag">
+                        </MenuItem>
+                        <Separator></Separator>
+                        <MenuItem Header="Words Setting">
+                            <MenuItem Header="Darker(Press Q)" Click="WordDarker">
+                            </MenuItem>
+                            <MenuItem Header="Lighter(Press W)" Click="WordLighter">
+                            </MenuItem>
+                            <Separator></Separator>
+                            <MenuItem Header="Change Foreground Color" Click="ChangeWordForegroundColor">
+                            </MenuItem>
+                            <MenuItem Header="Change Background Color" Click="ChangeWordBackgroundColor">
+                            </MenuItem>
+                            <MenuItem Header="Change Border Color" Click="ChangeWordBorderColor">
+                            </MenuItem>
+                            <MenuItem Header="Flip (Space) [!3]" Click="HideShowWord">
+                            </MenuItem>
+                            <Separator></Separator>
+                            <MenuItem Header="Skip Forever" Click="WordsSkipForever">
+                            </MenuItem>
+                            <Separator></Separator>
+                            <MenuItem Header="Export Words" Click="WordsExport">
+                            </MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="Group Setting">
+                            <MenuItem Header="Establish Category [#1]" Click="EstablishCategoryGroup">
+                            </MenuItem>
+                            <MenuItem Header="Join Category [#2]" Click="JoinCategorysGroup">
+                            </MenuItem>
+                            <MenuItem Header="Rename Category [#3]" Click="RenameCategorysGroup">
+                            </MenuItem>
+                            <MenuItem Header="Leave Category [#4]" Click="LeaveCategorysGroup">
+                            </MenuItem>
+                            <MenuItem Header="Dismiss Category [#5]" Click="DismissCategorysGroup">
+                            </MenuItem>
+                            <Separator></Separator>
+                            <MenuItem Header="Show Related Words (S) [#6]" Click="ShowRelatedCategorysGroup">
+                            </MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="List Setting">
+                            <MenuItem Header="Add Word" Click="AddWord">
+                            </MenuItem>
+                            <MenuItem Header="Add Words" Click="AddWords">
+                            </MenuItem>
+                            <Separator></Separator>
+                            <MenuItem Header="Delete Word" Click="DeleteWord">
+                            </MenuItem>
+                            <Separator></Separator>
+                            <MenuItem Header="Undo (U)" Click="WordsUndo">
+                            </MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="Background Setting">
+                            <MenuItem Header="Change Background" Click="ChangeBackground">
+                            </MenuItem>
+                            <MenuItem Header="Delete Background" Click="DeleteBackground">
+                            </MenuItem>
+                        </MenuItem>
+                    </ContextMenu>
+                </ScrollViewer.ContextMenu>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>
