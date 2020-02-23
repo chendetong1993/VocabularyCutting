@@ -2110,29 +2110,6 @@ namespace WPF
                     return null;
                 }
                 return SymbolsYoudao;
-                /*
-                TranClassYoudao r = null;
-                string url = string.Format(YoudaoServiceAddress, YoudaoAPI_ID, Text);
-                try
-                {
-                    using (StringReader sr = new StringReader(client.DownloadString(url)))
-                    {
-                        try
-                        {
-                            JsonTextReader jsonReader = new JsonTextReader(sr); //引用Newtonsoft.Json 自带
-                            JsonSerializer serializer = new JsonSerializer();
-                            r = serializer.Deserialize<TranClassYoudao>(jsonReader); //因为获取后的为json对象 ，实行转换
-                        }
-                        catch (Exception E) { }
-                    }
-                }
-                catch { }
-                if (r == null || r.basic == null || r.errorCode != 0)
-                {
-                    return null;
-                }
-                return r.basic;
-                */
             }
         }
 

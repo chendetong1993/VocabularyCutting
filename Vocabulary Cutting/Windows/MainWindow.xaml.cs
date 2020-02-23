@@ -1625,7 +1625,7 @@ namespace WPF
 
         private void ViewedMark(object sender, RoutedEventArgs e)
         {
-            MainPlatomEntrance.SetNotify(string.Format("Reviewed: {0} words", ActivedUserControlWordCard.Count), 2, this);
+            //MainPlatomEntrance.SetNotify(string.Format("Reviewed: {0} words", ActivedUserControlWordCard.Count), 2, this);
             for (int l = ActivedUserControlWordCard.Count - 1; l >= 0; l--)
             {
                 ActivedUserControlWordCard[l].TextBlock_MouseUpViewedMark();
@@ -2265,7 +2265,7 @@ namespace WPF
             Tasks.WaitFinished();
             MainPlatomEntrance.SetNotify("Filter Finished!", 2, this);
             //启动同步
-
+            /*
             var Copy = new Tuple<ConditionTypes, string, ConditionFlipTypes>[ListBoxFliterConditions.Items.Count];
             FilterCondition Temp = null;
             for (int i = 0; i < ListBoxFliterConditions.Items.Count; i++)
@@ -2280,6 +2280,7 @@ namespace WPF
                     i.InputCondition(Copy);
                 }
             }
+            */
         }
 
         public void InputCondition(Tuple<ConditionTypes, string, ConditionFlipTypes>[] List)
@@ -2796,18 +2797,18 @@ namespace WPF
                                         i.Focus = true;
                                         UserControlWordCard.WaitDrawRefresh();
                                         ScrollViewerWordsList.ScrollToHorizontalOffset(VisualTreeHelper.GetOffset(i).X);
-                                        MainPlatomEntrance.SetNotify("Jump to Word", 2, this);
+                                        //MainPlatomEntrance.SetNotify("Jump to Word", 2, this);
                                         MainClass.PlaySoundPath(WordsPackage + Instruction[0].ToString() + "\\" + Instruction + "\\" + "Pronunciation.kl", false);
                                     }
                                     else
                                     {
-                                        MainPlatomEntrance.SetNotify("Word is collapsed", 2, this);
+                                        //MainPlatomEntrance.SetNotify("Word is collapsed", 2, this);
                                         MainClass.PlaySoundPath(WordsPackage + Instruction[0].ToString() + "\\" + Instruction + "\\" + "Pronunciation.kl", false);
                                     }
                                 }
                                 else
                                 {
-                                    MainPlatomEntrance.SetNotify("Word is outside", 2, this);
+                                    //MainPlatomEntrance.SetNotify("Word is outside", 2, this);
                                     MainClass.PlaySoundPath(WordsPackage + Instruction[0].ToString() + "\\" + Instruction + "\\" + "Pronunciation.kl", false);
                                 }
                                 Found = true;
@@ -2892,11 +2893,11 @@ namespace WPF
                         }
                     }
                 }
-                MainPlatomEntrance.SetNotify("Undo Succeed!", 2, this);
+                //MainPlatomEntrance.SetNotify("Undo Succeed!", 2, this);
             }
             else
             {
-                MainPlatomEntrance.SetNotify("No history to undo!", 2, this);
+                //MainPlatomEntrance.SetNotify("No history to undo!", 2, this);
             }
         }
 
@@ -2966,7 +2967,7 @@ namespace WPF
                             }
                             catch
                             {
-                                MainPlatomEntrance.SetNotify("Failed to switch selecting word", 2, this);
+                                //MainPlatomEntrance.SetNotify("Failed to switch selecting word", 2, this);
                             }
                             break;
                         case Key.Down:
@@ -3019,7 +3020,7 @@ namespace WPF
                             }
                             catch
                             {
-                                MainPlatomEntrance.SetNotify("Failed to switch selecting word", 2, this);
+                                //MainPlatomEntrance.SetNotify("Failed to switch selecting word", 2, this);
                             }
                             break;
                     }
@@ -3035,7 +3036,7 @@ namespace WPF
 
         private void WordsSkipForever(object sender, RoutedEventArgs e)
         {
-            MainPlatomEntrance.SetNotify(string.Format("Reviewed: {0} words", ActivedUserControlWordCard.Count), 2, this);
+            //MainPlatomEntrance.SetNotify(string.Format("Reviewed: {0} words", ActivedUserControlWordCard.Count), 2, this);
             for (int l = ActivedUserControlWordCard.Count - 1; l >= 0; l--)
             {
                 ActivedUserControlWordCard[l].TextBlock_MouseUpMaxViewedMark();
@@ -3108,11 +3109,11 @@ namespace WPF
                     ListBoxFliterConditions.Items.Add(new FilterCondition(BackupConditions, i.Item1, i.Item2, i.Item3));
                 }
                 FilterWords();
-                MainPlatomEntrance.SetNotify("Undo Successfully", 2, this);
+                //MainPlatomEntrance.SetNotify("Undo Successfully", 2, this);
             }
             else
             {
-                MainPlatomEntrance.SetNotify("No Action to Undo", 2, this);
+                //MainPlatomEntrance.SetNotify("No Action to Undo", 2, this);
             }
         }
 
@@ -3130,7 +3131,7 @@ namespace WPF
 
         private void CancelStrongReview(object sender, RoutedEventArgs e)
         {
-            MainPlatomEntrance.SetNotify(string.Format("Cancel Strong Review: {0} words", ActivedUserControlWordCard.Count), 2, this);
+            //MainPlatomEntrance.SetNotify(string.Format("Cancel Strong Review: {0} words", ActivedUserControlWordCard.Count), 2, this);
             for (int l = ActivedUserControlWordCard.Count - 1; l >= 0; l--)
             {
                 ActivedUserControlWordCard[l].MenuItem_MouseUpCancelStrongReview();
@@ -3140,7 +3141,7 @@ namespace WPF
 
         private void StrongReview(object sender, RoutedEventArgs e)
         {
-            MainPlatomEntrance.SetNotify(string.Format("Strong Review: {0} words", ActivedUserControlWordCard.Count), 2, this);
+            //MainPlatomEntrance.SetNotify(string.Format("Strong Review: {0} words", ActivedUserControlWordCard.Count), 2, this);
             for (int l = ActivedUserControlWordCard.Count - 1; l >= 0; l--)
             {
                 ActivedUserControlWordCard[l].MenuItem_MouseUpStrongReview();

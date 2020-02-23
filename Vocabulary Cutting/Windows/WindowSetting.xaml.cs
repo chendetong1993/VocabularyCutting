@@ -35,7 +35,6 @@ namespace WPF
             MainClass.BindingData("AutoFillingExamples", Binding_Data, CheckBoxAutoFillExamples, CheckBox.IsCheckedProperty);
             MainClass.BindingData("AutoFillingPictures", Binding_Data, CheckBoxAutoFillPictures, CheckBox.IsCheckedProperty);
             MainClass.BindingData("AutoFillingPronunciations", Binding_Data, CheckBoxAutoFillPronunciations, CheckBox.IsCheckedProperty);
-            MainClass.BindingData("AutoShowTips", Binding_Data, CheckBoxAutoShowTips, CheckBox.IsCheckedProperty);
             Father = Father_;
             #endregion
             foreach (var l in MainPlatomEntrance.Setting.OpenLists)

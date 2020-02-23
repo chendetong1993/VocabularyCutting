@@ -47,7 +47,6 @@
                         <Button Content="Change Start Remind Voice" Height="26" Width="200" HorizontalAlignment="Left" Margin="4,6,4,2" Click="Button_ChangeStartVoice"/>
                         <Button Content="Change End Remind Voice" Height="26" Width="200" HorizontalAlignment="Left" Margin="4,6,4,2" Click="Button_ChangeEndVoice"/>
                         <Button Content="Change Notices Remind Voice" Height="26" Width="200" HorizontalAlignment="Left" Margin="4,6,4,2" Click="Button_ChangeRemindVoice"/>
-                        <CheckBox x:Name="CheckBoxAutoShowTips" Margin="2,6,4,2" Content="Starts Show Tips"/>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="Advanced Setting">

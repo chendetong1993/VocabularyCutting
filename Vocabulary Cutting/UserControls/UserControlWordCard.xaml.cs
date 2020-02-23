@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -236,11 +235,14 @@ namespace WPF
                             Information.AppendLine((i1 + 1) + ". " + ReturnCategorys[i1]);
                             foreach (var m in MainPlatomEntrance.WindowList)
                             {
-                                foreach (var k in m.WordsList.Words)
+                                if (m.WordsList != null)
                                 {
-                                    if (k.Spelling != Word.Spelling && k.Categorys.Contains(ReturnCategorys[i1]))
+                                    foreach (var k in m.WordsList.Words)
                                     {
-                                        Information.AppendLine(string.Format("{0}({1}) {2}", "  ", (++Index).ToString(), k.Spelling));
+                                        if (k.Spelling != Word.Spelling && k.Categorys.Contains(ReturnCategorys[i1]))
+                                        {
+                                            Information.AppendLine(string.Format("{0}({1}) {2}", "  ", (++Index).ToString(), k.Spelling));
+                                        }
                                     }
                                 }
                             }

@@ -105,7 +105,7 @@ namespace WPF
                     #endregion
                     #region 定时
                     SlowerTimer = new DispatcherTimer();
-                    SlowerTimer.Interval = new TimeSpan(0, 0, 60);
+                    SlowerTimer.Interval = new TimeSpan(0, 10, 0);
                     SlowerTimer.Tick += GCTimer_Tick;
                     //启动定时器
                     SlowerTimer.Start();
